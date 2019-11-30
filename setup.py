@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_tool",  # Replace with your own username
-    version="1.0.2",
+    version="1.1",
     author="xyl",
     author_email="author@example.com",
     description="我的工具",
@@ -13,8 +13,13 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/xyl198809041/py_tool",
     packages=setuptools.find_packages(),
-    python_requires='>=3.6',
+    python_requires='>=3.5',
     install_requires=[
-        'selenium'
+        'selenium',
+        'pandas',
+        'numpy',
+        'pyquery',
+        'requests',
+        'pymssql'
     ]
 )
