@@ -9,7 +9,7 @@ setuptools.setup(
     author="xyl",
     author_email="author@example.com",
     description="我的工具",
-    long_description=long_description,
+    # long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/xyl198809041/py_tool",
     packages=setuptools.find_packages(),
