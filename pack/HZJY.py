@@ -33,7 +33,8 @@ class HZJY:
         self.__web.GetHtml('https://app.hzedu.gov.cn/api/login?sign=%s&uuid=%s&userid=%s' %
                            (self.__sign, self.__uuid, self.__userid))
         self.__login_data = self.__web.GetJson('http://app.hzedu.gov.cn/api/asklogin?uuid=%s' % self.__uuid)
-        token = self.__login_data['data']['context']['token']['token']
+        token = 'eyJqdGkiOiJqd3RfbXljbGFzcyIsImlhdCI6MTU3NzI4Mjg5Miwic3ViIjoie1wiYXBwaWRcIjoxMDMzLFwiZGF0ZWNyZWF0ZWRcIjpcIlwiLFwiaGVhZHBvcnRyYWl0XCI6XCJcIixcImltdG9rZW5cIjpcIjBmZjQ1YzE4ZGRlZDk2ZGFiNzhkYjQxNWJjYzIzZTBkXCIsXCJtb2JpbGVcIjpcIjE4NjU4MTgxMzA2XCIsXCJuaWNrbmFtZVwiOlwi6K645aea6b6ZXCIsXCJwYXNzd29yZFwiOlwiMDY3ZWYxMzJkOWI4ZjlmN2MyY2NkMjI2OGJhNmE3MmJcIixcInBlb3BsZWlkXCI6NDI0NzM2LFwicG9ydGFsc1wiOlwiXCIsXCJxcmNvZGV1cmxcIjpcImh0dHBzOi8vYXBwLmh6ZWR1Lmdvdi5jbi91L2NjMjIyMDgyMDJiNWEwNGFcIixcInNhbHRcIjpcIjUwZjQ2YTg3NGM3NDY1ZjU5OGQzNTU3YjMyMDRhODMyXCIsXCJzZXR0aW5nc1wiOjAsXCJzb3VyY2Vjb2RlXCI6XCJcIixcInN0YXR1c1wiOjEsXCJ1c2VyaWRcIjo5MjMwNzEsXCJ1c2VybmFtZVwiOlwiXCJ9IiwiZXhwIjoxNTc3MjkwMDkyfQ.LPVntTS6n7tdGXO1SpXFOm3sRh1FaHxK6GIB8Q0onDM'
+
         self.__web.BackWebBrowser.headers['x-access-token'] = token
         self.__is_login = True
         print('登录成功')
@@ -81,4 +82,4 @@ class HZJY:
                     self.send_msg(title=title, msg=msg, senderInfo=senderInfo, to_id=to_id)
                 else:
                     print('发送失败')
-        # threading.Thread(target=f).run()
+        threading.Thread(target=f).run()
