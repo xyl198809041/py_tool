@@ -123,8 +123,8 @@ class WebBrowser:
             requests_cookie[c["name"]] = c["value"]
         self.BackWebBrowser.cookies = cookiejar_from_dict(requests_cookie)
 
-    def Set_cookie_by_str(self,cookie_str):
-        cookie_data = dict(map(lambda x: x.split('='), cookie_str.split(';')))
+    def Set_cookie_by_str(self, cookie_str):
+        cookie_data = dict(map(lambda x: x.split('=', 1), cookie_str.split(';')))
         self.BackWebBrowser.cookies = cookiejar_from_dict(cookie_data)
 
     def GetHtml(self, url: str, encoding: str = "utf8"):
