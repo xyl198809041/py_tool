@@ -14,7 +14,7 @@ import re
 
 class WebBrowser:
 
-    def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 1):
+    def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 10):
         self.timeout = timeout
         if IsUserChrome: self.Chrome = WebDriver()
         self.IsProxy = IsProxy
