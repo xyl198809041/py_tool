@@ -1,5 +1,6 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from requests import Session
+from selenium.webdriver.chrome.options import Options
 from requests.cookies import cookiejar_from_dict
 import requests
 import time
@@ -16,7 +17,14 @@ class WebBrowser:
 
     def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 10):
         self.timeout = timeout
-        if IsUserChrome: self.Chrome = WebDriver()
+        chromeOpitons = Options()
+        prefs = {
+            "profile.managed_default_content_settings.images": 1,
+            "profile.content_settings.plugin_whitelist.adobe-flash-player": 1,
+            "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
+        }
+        chromeOpitons.add_experimental_option('prefs', prefs)
+        if IsUserChrome: self.Chrome = WebDriver(chrome_options=chromeOpitons)
         self.IsProxy = IsProxy
         self.ProxyIpList = list()
         self.ResetBackWebBrowser()
