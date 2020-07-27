@@ -20,3 +20,11 @@ def command(cmd, timeout=60):
             return None
         time.sleep(0.1)
     return p.stdout.read().decode(encoding='gbk')
+
+
+def now_datetime(format: str = '%Y-%m-%d %H:%M:%S'):
+    """
+    返回当天时间并格式化
+    :return:
+    """
+    return time.strftime(format, time.localtime(time.time()))

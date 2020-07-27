@@ -1,3 +1,5 @@
-import pack.pySMS
+import pack.pyChrome
 
-pack.pySMS.SendSMS('15858291872','234566543')
+web=pack.pyChrome.WebBrowser()
+web.Chrome.get('''http://www.8t88.com/html/88/7187.htm''')
+input()
