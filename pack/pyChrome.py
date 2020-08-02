@@ -1,3 +1,5 @@
+import asyncio
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from requests import Session
 from selenium.webdriver.chrome.options import Options
@@ -185,4 +187,13 @@ class WebBrowser:
             time.sleep(1)
             wait_time = wait_time - 1
         time.sleep(1)
+        return wait_time > 0
+
+    async def asyncCheckUrl(self, CheckUrl, wait_time: int = 60) -> bool:
+        while wait_time > 0:
+            if self.Chrome.current_url.find(CheckUrl) != -1:
+                break
+            await asyncio.sleep(1)
+            wait_time = wait_time - 1
+        await asyncio.sleep(1)
         return wait_time > 0
