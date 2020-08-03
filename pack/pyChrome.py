@@ -21,7 +21,7 @@ class WebBrowser:
         self.timeout = timeout
         chromeOpitons = Options()
         prefs = {
-            "profile.managed_default_content_settings.images": '1' if is_load_img else '2',
+            "profile.managed_default_content_settings.images": 1 if is_load_img else 2,
             "profile.content_settings.plugin_whitelist.adobe-flash-player": 1,
             "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
         }
