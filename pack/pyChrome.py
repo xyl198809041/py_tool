@@ -17,11 +17,11 @@ import re
 
 class WebBrowser:
 
-    def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 10):
+    def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 10, is_load_img=True):
         self.timeout = timeout
         chromeOpitons = Options()
         prefs = {
-            "profile.managed_default_content_settings.images": 1,
+            "profile.managed_default_content_settings.images": '1' if is_load_img else '2',
             "profile.content_settings.plugin_whitelist.adobe-flash-player": 1,
             "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
         }
