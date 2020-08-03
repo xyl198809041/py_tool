@@ -23,6 +23,6 @@ setuptools.setup(
         'numpy',
         'pyquery',
         'requests',
-        'pymssql<3.0'
+        # 'pymssql<3.0'
     ]
 )
