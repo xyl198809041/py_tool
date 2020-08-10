@@ -11,6 +11,8 @@ import urllib3
 import requests.adapters
 import html
 import pyquery
+from selenium.webdriver.remote.webelement import WebElement
+
 from pack.threadByQueue import threadByQueue
 import re
 
@@ -90,29 +92,6 @@ class WebBrowser:
                     # print(ip + '第' + str(i) + '次测试失败重试,信息:' + ipconfig)
             except Exception as e:
                 pass
-                # print(ip + '第' + str(i) + '次测试失败重试,信息:' + str(e))
-        # print(ip + '测试失败')
-
-    # def ProxyTest(self, Next: bool = False):
-    #     if Next:
-    #         self.GetProxyIp(True)
-    #     while True:
-    #         try:
-    #             ipconfig = self.BackWebBrowser.get('http://pv.sohu.com/cityjson?ie=utf-8',
-    #                                                timeout=self.timeout,
-    #                                                proxies={'https': self.GetProxyIp(),
-    #                                                         'http': self.GetProxyIp()
-    #                                                         }).text
-    #             if ipconfig.find(self.GetProxyIp().split(':')[0]) != -1:
-    #                 print(ipconfig + '\n代理服务器连接成功')
-    #                 self.ResetBackWebBrowser()
-    #                 break
-    #             else:
-    #                 print('测试失败返回信息:' + ipconfig)
-    #                 print('测试代理服务器:' + self.GetProxyIp(True))
-    #         except Exception as e:
-    #             print(e)
-    #             print('测试代理服务器:' + self.GetProxyIp(True))
 
     def Login(self, login_url: str, check_url: str):
         self.Chrome.get(login_url)
@@ -197,3 +176,12 @@ class WebBrowser:
             wait_time = wait_time - 1
         await asyncio.sleep(1)
         return wait_time > 0
+
+    async def asyncFindElement_by_css_selector(self, css_selector: str, timeout: int = 10) -> WebElement:
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                return self.Chrome.find_element_by_css_selector(css_selector)
+            except:
+                await asyncio.sleep(0.1)
+        return None
