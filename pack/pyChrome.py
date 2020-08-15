@@ -151,6 +151,7 @@ class WebBrowser:
                 n = n + 1
                 print("连接错误" + url)
                 print(e)
+        return None
 
     def PostJson(self, url: str, data, encoding: str = "utf-8", error_count: int = 5):
         try:
