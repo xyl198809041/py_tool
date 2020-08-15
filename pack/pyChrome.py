@@ -142,22 +142,23 @@ class WebBrowser:
         obj = json.loads(html)
         return obj
 
-    def PostHtml(self, url: str, data, encoding: str = "utf-8"):
-        while True:
-            # try:
-            return self.BackWebBrowser.post(url, data=data, timeout=self.timeout).content.decode(encoding)
-        # except Exception as e:
-        #     print("连接错误" + url)
-        #     print(e)
+    def PostHtml(self, url: str, data, encoding: str = "utf-8", error_count: int = 5):
+        n = 0
+        while n < error_count:
+            try:
+                return self.BackWebBrowser.post(url, data=data, timeout=self.timeout).content.decode(encoding)
+            except Exception as e:
+                n = n + 1
+                print("连接错误" + url)
+                print(e)
 
-    def PostJson(self, url: str, data, encoding: str = "utf-8"):
-        while True:
-            # try:
-            html = self.PostHtml(url, data, encoding)
+    def PostJson(self, url: str, data, encoding: str = "utf-8", error_count: int = 5):
+        try:
+            html = self.PostHtml(url, data, encoding, error_count)
             obj = json.loads(html)
             return obj
-        # except:
-        #     print("连接错误" + url)
+        except:
+            return None
 
     def CheckUrl(self, CheckUrl, wait_time: int = 60) -> bool:
         while wait_time > 0:
