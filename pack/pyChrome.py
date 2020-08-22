@@ -112,6 +112,15 @@ class WebBrowser:
             requests_cookie[c["name"]] = c["value"]
         self.BackWebBrowser.cookies = cookiejar_from_dict(requests_cookie)
 
+    def Get_cookie_str(self):
+        """
+        返回cookie字符串
+        :return:
+        """
+        cookies = self.Chrome.get_cookies()
+        cookies = [c['name'] + '=' + c['value'] for c in cookies]
+        return ';'.join(cookies)
+
     def Set_cookie_by_str(self, cookie_str):
         cookie_data = dict(map(lambda x: x.split('=', 1), cookie_str.split(';')))
         self.BackWebBrowser.cookies = cookiejar_from_dict(cookie_data)
