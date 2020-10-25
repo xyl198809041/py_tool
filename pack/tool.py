@@ -1,5 +1,6 @@
 import subprocess
 import time
+import win32com.client
 
 
 def command(cmd, timeout=60):
@@ -28,3 +29,19 @@ def now_datetime(format: str = '%Y-%m-%d %H:%M:%S'):
     :return:
     """
     return time.strftime(format, time.localtime(time.time()))
+
+
+def speak(text: str, file: str = ""):
+    """
+机器说话
+    :param text:
+    :param file:
+    """
+    s = win32com.client.Dispatch('SAPI.SpVoice')
+    if file != "":
+        f = win32com.client.Dispatch('SAPI.SpFileStream')
+        f.Open(file, '3')
+        s.AudioOutputStream = f
+    s.Speak(text)
+    if file != "":
+        f.Close()
