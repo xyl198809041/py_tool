@@ -127,7 +127,7 @@ class WebBrowser:
 
     def GetHtml(self, url: str, encoding: str = "utf8"):
         i = 0
-        while True:
+        while i < 10:
             try:
                 if self.IsProxy:
                     return self.BackWebBrowser.get(url, timeout=self.timeout,
@@ -142,6 +142,7 @@ class WebBrowser:
                 print(e)
                 if self.IsProxy and i % 5 == 0:
                     self.GetProxyIp(True)
+        raise Exception('连接失败')
 
     def GetHtmlByPyQuery(self, url: str, encoding: str = 'utf8'):
         return pyquery.PyQuery(self.GetHtml(url, encoding))
