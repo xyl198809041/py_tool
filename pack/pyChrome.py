@@ -197,3 +197,11 @@ class WebBrowser:
             except:
                 await asyncio.sleep(0.1)
         return None
+
+    def setAttribute(self, elementobj, attributeName, value):
+        """
+        封装设置页面对象的属性值的方法
+        调用JS代码修改页面元素的属性值，arguments[0]~arguments[1]分别
+        会用后面的element，attributeName和value参数进行替换
+        """
+        self.Chrome.execute_script("arguments[0].setAttribute(arguments[1],arguments[2])", elementobj, attributeName, value)
