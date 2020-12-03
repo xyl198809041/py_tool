@@ -1,9 +1,3 @@
-from selenium.webdriver.remote.webelement import WebElement
+import pack.pySMS as mail
 
-import pack.pyChrome
-import asyncio
-
-web=pack.pyChrome.WebBrowser(is_load_img=False)
-web.Chrome.get('http://www.baidu.com')
-a=web.Get_cookie_str()
-print(a)
+mail.SendMail('xyl19880904@163.com', '换个题目', '多点内容\n再来一队\n换行')
