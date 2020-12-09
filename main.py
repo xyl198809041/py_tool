@@ -1,3 +1,4 @@
-import pack.pySMS as mail
+import pack.pyChrome as chrome
 
-mail.SendMail('xyl19880904@163.com', '换个题目', '多点内容\n再来一队\n换行')
+web = chrome.WebBrowser(proxy='127.0.0.1:8888')
+web.Chrome.get('http://www.baidu.com')

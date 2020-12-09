@@ -12,14 +12,15 @@ import requests.adapters
 import html
 import pyquery
 from selenium.webdriver.remote.webelement import WebElement
-
+import selenium
 from pack.threadByQueue import threadByQueue
 import re
 
 
 class WebBrowser:
 
-    def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 10, is_load_img=True):
+    def __init__(self, IsUserChrome: bool = True, IsProxy: bool = False, timeout: int = 10, is_load_img=True,
+                 proxy: str = ''):
         self.timeout = timeout
         chromeOpitons = Options()
         prefs = {
@@ -28,7 +29,10 @@ class WebBrowser:
             "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
         }
         chromeOpitons.add_experimental_option('prefs', prefs)
-        if IsUserChrome: self.Chrome = WebDriver(chrome_options=chromeOpitons)
+        if proxy != "":
+            chromeOpitons.add_argument('--proxy-server=http://%s' % proxy)
+        if IsUserChrome:
+            self.Chrome = WebDriver(chrome_options=chromeOpitons)
         self.IsProxy = IsProxy
         self.ProxyIpList = list()
         self.ResetBackWebBrowser()
@@ -204,4 +208,5 @@ class WebBrowser:
         调用JS代码修改页面元素的属性值，arguments[0]~arguments[1]分别
         会用后面的element，attributeName和value参数进行替换
         """
-        self.Chrome.execute_script("arguments[0].setAttribute(arguments[1],arguments[2])", elementobj, attributeName, value)
+        self.Chrome.execute_script("arguments[0].setAttribute(arguments[1],arguments[2])", elementobj, attributeName,
+                                   value)
