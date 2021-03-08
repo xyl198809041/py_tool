@@ -24,7 +24,7 @@ setuptools.setup(
         'pyquery',
         'requests',
         'fastapi==0.49.0',
-        'pywin32'
+        # 'pywin32'
         # 'pymssql<3.0'
     ]
 )
