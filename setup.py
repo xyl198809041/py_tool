@@ -23,7 +23,7 @@ setuptools.setup(
         'numpy',
         'pyquery',
         'requests',
-        'fastapi==0.49.0',
+        'fastapi',
         # 'pywin32'
         # 'pymssql<3.0'
     ]
