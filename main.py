@@ -1,4 +1,4 @@
-import pack.pyChrome as chrome
+from pack.tool import speak
 
-web = chrome.WebBrowser(proxy='127.0.0.1:8888')
-web.Chrome.get('http://www.baidu.com')
+
+speak('1、信号发出前答题或者考试结')

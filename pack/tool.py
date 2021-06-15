@@ -1,7 +1,51 @@
 import subprocess
 import time
 import win32com.client
+import hashlib
+import pygame
+from aip import AipSpeech
 
+client = AipSpeech('15214676', 'ec38ooAnseLccgP1U89iI88l', '04h8Dhm4DdMuztfkWAlWwBzf5dtF8Mc8')
+
+
+def md5(data):
+    return hashlib.md5(data.encode()).hexdigest()
+
+
+def speak(text: str, file: str = "333.mp3"):
+    """
+机器说话(百度)
+    :param text:
+    :param file:
+    """
+    if file == "":
+        save_file = 'temp/%s.mp3' % md5(text)
+    else:
+        save_file = file
+    rt = client.synthesis(text, options={'per': 3, 'vol': 8})
+    open(save_file, 'wb').write(rt)
+    if file == "":
+        pygame.mixer.init()
+        pygame.mixer.music.load(save_file)
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy() == 1:
+            pygame.time.wait(1)
+
+
+# def speak(text: str, file: str = ""):
+#     """
+# 机器说话
+#     :param text:
+#     :param file:
+#     """
+#     s = win32com.client.Dispatch('SAPI.SpVoice')
+#     if file != "":
+#         f = win32com.client.Dispatch('SAPI.SpFileStream')
+#         f.Open(file, '3')
+#         s.AudioOutputStream = f
+#     s.Speak(text)
+#     if file != "":
+#         f.Close()
 
 def command(cmd, timeout=60):
     """执行命令cmd，返回命令输出的内容。
@@ -29,19 +73,3 @@ def now_datetime(format: str = '%Y-%m-%d %H:%M:%S'):
     :return:
     """
     return time.strftime(format, time.localtime(time.time()))
-
-
-def speak(text: str, file: str = ""):
-    """
-机器说话
-    :param text:
-    :param file:
-    """
-    s = win32com.client.Dispatch('SAPI.SpVoice')
-    if file != "":
-        f = win32com.client.Dispatch('SAPI.SpFileStream')
-        f.Open(file, '3')
-        s.AudioOutputStream = f
-    s.Speak(text)
-    if file != "":
-        f.Close()
