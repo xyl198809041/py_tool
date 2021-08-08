@@ -210,3 +210,33 @@ class WebBrowser:
         """
         self.Chrome.execute_script("arguments[0].setAttribute(arguments[1],arguments[2])", elementobj, attributeName,
                                    value)
+
+
+def sync_cookie(context, session: Session = Session()) -> Session:
+    """
+同步cookie
+    :param context:
+    :param session:
+    :return:
+    """
+    web = session
+    cookie = context.cookies()
+    requests_cookie = {}
+    for c in cookie:
+        requests_cookie[c["name"]] = c["value"]
+    web.cookies = cookiejar_from_dict(requests_cookie)
+    return web
+
+
+def url_pars2json(s: str):
+    """
+将url参数变成dict类型
+    :param s:
+    :return:
+    """
+    l = s.split('&')
+    rt = {}
+    for i in l:
+        p = i.split('=')
+        rt[p[0]] = p[1]
+    return rt
