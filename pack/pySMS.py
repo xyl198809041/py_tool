@@ -59,8 +59,8 @@ def SendSMS(phonenum: str, msg: str):
 
 
 class Mail:
-    msg_from = 'xyl19880904@qq.com'  # 发送方邮箱
-    passwd = 'aezwdgkwpqecbjha'  # 填入发送方邮箱的授权码
+    msg_from = 'xyl19880904@163.com'  # 发送方邮箱
+    passwd = 'PAHCPSKCILETEAOL'  # 填入发送方邮箱的授权码
 
     def Send(self, msg_to='xyl19880904@qq.com', title: str = "题目", content="内容"):
         msg = MIMEText(content)
@@ -68,7 +68,7 @@ class Mail:
         msg['From'] = self.msg_from
         msg['To'] = msg_to
         try:
-            s = smtplib.SMTP_SSL("smtp.qq.com", 465)  # 邮件服务器及端口号
+            s = smtplib.SMTP_SSL("smtp.163.com", 465)  # 邮件服务器及端口号
             s.login(self.msg_from, self.passwd)
             s.sendmail(self.msg_from, msg_to, msg.as_string())
             print(msg_to+"发送成功")

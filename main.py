@@ -1,4 +1,3 @@
-from pack.tool import speak
+import pack.pySMS as sms
 
-
-speak('1、信号发出前答题或者考试结')
+sms.SendMail()
