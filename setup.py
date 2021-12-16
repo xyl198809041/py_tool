@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_tool",  # Replace with your own username
-    version="1.2.1",
+    version="1.2.2",
     author="xyl",
     author_email="author@example.com",
     description="我的工具",
@@ -24,7 +24,10 @@ setuptools.setup(
         'pyquery',
         'requests',
         'fastapi',
-        # 'pywin32'
+        'pywin32',
+        'pygame',
+        'baidu-aip',
+        'pymongo'
         # 'pymssql<3.0'
     ]
 )

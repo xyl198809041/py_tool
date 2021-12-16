@@ -48,14 +48,16 @@ class SMS:
         j = self.Web.PostJson(self.__sendurl, data=data1)
         if j["Code"] == "0":
             print("向%s发送短信成功" % phonenum)
+            return True
         else:
             self.IsLogin = False
             print("发送短信失败")
             print(j)
+            return False
 
 
 def SendSMS(phonenum: str, msg: str):
-    SMS().SendSMS(phonenum, msg)
+    return SMS().SendSMS(phonenum, msg)
 
 
 class Mail:
