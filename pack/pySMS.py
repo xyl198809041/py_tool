@@ -15,7 +15,8 @@ class SMS:
 
     def __init__(self, default_phonenum: str = None):
         self.Web = pyChrome.WebBrowser(False)
-        self.IsLogin = False
+        self.IsLogin = True
+        self.error_time = 5
         if default_phonenum != None:
             self.default_phonenum = default_phonenum
 
@@ -48,16 +49,24 @@ class SMS:
         j = self.Web.PostJson(self.__sendurl, data=data1)
         if j["Code"] == "0":
             print("向%s发送短信成功" % phonenum)
+            self.error_time = 5
             return True
         else:
             self.IsLogin = False
             print("发送短信失败")
             print(j)
-            return False
+            self.error_time -= 1
+            if self.error_time == 0:
+                return False
+            else:
+                return self.SendSMS(phonenum, msg)
+
+
+sms = SMS()
 
 
 def SendSMS(phonenum: str, msg: str):
-    return SMS().SendSMS(phonenum, msg)
+    return sms.SendSMS(phonenum, msg)
 
 
 class Mail:
@@ -73,7 +82,7 @@ class Mail:
             s = smtplib.SMTP_SSL("smtp.163.com", 465)  # 邮件服务器及端口号
             s.login(self.msg_from, self.passwd)
             s.sendmail(self.msg_from, msg_to, msg.as_string())
-            print(msg_to+"发送成功")
+            print(msg_to + "发送成功")
         except:
             print("发送失败")
         finally:

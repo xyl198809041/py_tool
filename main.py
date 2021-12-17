@@ -1,6 +1,4 @@
-import pack.pyChrome as chrome
+import pack.pySMS as sms
 
-web = chrome.WebBrowser(False)
-web.BackWebBrowser.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-rt = web.PostJson('https://daydayup.96225.com/hcswipeback/login', data='username=gsq_admin_0091&password=149ee0e92e03ae4b84b32ef992ba3921')
-print(rt)
+sms.SendSMS('15858291872', '中文测试一下啊')
+input()
