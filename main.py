@@ -1,4 +1,4 @@
-import pack.pySMS as sms
+from pack.tool import speak
 
-sms.SendSMS('15858291872', '中文测试一下啊')
-input()
+
+speak('请监考老师进入考场,做好考生入场的准备工作')

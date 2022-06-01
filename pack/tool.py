@@ -1,3 +1,4 @@
+import os.path
 import subprocess
 import time
 import win32com.client
@@ -12,7 +13,7 @@ def md5(data):
     return hashlib.md5(data.encode()).hexdigest()
 
 
-def speak(text: str, file: str = "333.mp3"):
+def speak(text: str, file: str = ""):
     """
 机器说话(百度)
     :param text:
@@ -22,7 +23,9 @@ def speak(text: str, file: str = "333.mp3"):
         save_file = 'temp/%s.mp3' % md5(text)
     else:
         save_file = file
-    rt = client.synthesis(text, options={'per': 3, 'vol': 8})
+    rt = client.synthesis(text, options={'per': 0, 'vol': 8})
+    if not os.path.exists('temp'):
+        os.mkdir('temp')
     open(save_file, 'wb').write(rt)
     if file == "":
         pygame.mixer.init()
