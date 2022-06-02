@@ -13,9 +13,10 @@ def md5(data):
     return hashlib.md5(data.encode()).hexdigest()
 
 
-def speak(text: str, file: str = ""):
+def speak(text: str, file: str = "", is_OverWrite=False):
     """
 机器说话(百度)
+    :param is_OverWrite:
     :param text:
     :param file:
     """
@@ -23,18 +24,19 @@ def speak(text: str, file: str = ""):
         save_file = 'temp/%s.mp3' % md5(text)
     else:
         save_file = file
-    n = 0
-    while True:
-        try:
-            rt = client.synthesis(text, options={'per': 0, 'vol': 8,'spd':5})
-            break
-        except Exception as e:
-            n += 1
-            if n > 5:
-                raise e
-    if not os.path.exists('temp'):
-        os.mkdir('temp')
-    open(save_file, 'wb').write(rt)
+    if is_OverWrite or not os.path.exists(save_file):
+        n = 0
+        while True:
+            try:
+                rt = client.synthesis(text, options={'per': 0, 'vol': 8, 'spd': 5})
+                break
+            except Exception as e:
+                n += 1
+                if n > 5:
+                    raise e
+        if not os.path.exists('temp'):
+            os.mkdir('temp')
+        open(save_file, 'wb').write(rt)
     if file == "":
         pygame.mixer.init()
         pygame.mixer.music.load(save_file)
