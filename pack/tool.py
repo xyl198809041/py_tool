@@ -23,7 +23,15 @@ def speak(text: str, file: str = ""):
         save_file = 'temp/%s.mp3' % md5(text)
     else:
         save_file = file
-    rt = client.synthesis(text, options={'per': 0, 'vol': 8})
+    n = 0
+    while True:
+        try:
+            rt = client.synthesis(text, options={'per': 0, 'vol': 8})
+            break
+        except Exception as e:
+            n += 1
+            if n > 5:
+                raise e
     if not os.path.exists('temp'):
         os.mkdir('temp')
     open(save_file, 'wb').write(rt)
