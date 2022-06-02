@@ -26,7 +26,7 @@ def speak(text: str, file: str = ""):
     n = 0
     while True:
         try:
-            rt = client.synthesis(text, options={'per': 0, 'vol': 8})
+            rt = client.synthesis(text, options={'per': 0, 'vol': 8,'spd':5})
             break
         except Exception as e:
             n += 1
