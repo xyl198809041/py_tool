@@ -13,9 +13,10 @@ def md5(data):
     return hashlib.md5(data.encode()).hexdigest()
 
 
-def speak(text: str, file: str = "", is_OverWrite=False):
+def speak(text: str, file: str = "", is_OverWrite=False, spd=5):
     """
 机器说话(百度)
+    :param spd:
     :param is_OverWrite:
     :param text:
     :param file:
@@ -28,7 +29,7 @@ def speak(text: str, file: str = "", is_OverWrite=False):
         n = 0
         while True:
             try:
-                rt = client.synthesis(text, options={'per': 0, 'vol': 8, 'spd': 5})
+                rt = client.synthesis(text, options={'per': 0, 'vol': 8, 'spd': spd})
                 break
             except Exception as e:
                 n += 1
