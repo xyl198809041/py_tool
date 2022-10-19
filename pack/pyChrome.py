@@ -29,8 +29,6 @@ class WebBrowser:
             "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
         }
         chromeOpitons.add_experimental_option('prefs', prefs)
-        chromeOpitons.add_experimental_option('excludeSwitches', ['enable-automation'])
-        chromeOpitons.add_argument("--incognito")
         if proxy != "":
             chromeOpitons.add_argument('--proxy-server=http://%s' % proxy)
         if IsUserChrome:
