@@ -30,7 +30,7 @@ class WebBrowser:
         }
         chromeOpitons.add_experimental_option('prefs', prefs)
         if proxy != "":
-            chromeOpitons.add_argument('--proxy-server=http://%s' % proxy)
+            chromeOpitons.add_argument('--proxy-server=%s' % proxy)
         if IsUserChrome:
             self.Chrome = WebDriver(chrome_options=chromeOpitons)
         self.IsProxy = IsProxy
