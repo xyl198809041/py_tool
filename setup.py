@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_tool",  # Replace with your own username
-    version="1.2.8",
+    version="1.2.9",
     author="xyl",
     author_email="author@example.com",
     description="我的工具",
@@ -28,6 +28,8 @@ setuptools.setup(
         'pygame',
         'baidu-aip',
         'pymongo'
-        # 'pymssql<3.0'
+        # 'pymssql<3.0',
+        'audioplayer',
+        'edge_tts'
     ]
 )
