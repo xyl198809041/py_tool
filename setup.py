@@ -27,7 +27,7 @@ setuptools.setup(
         'pywin32',
         'pygame',
         'baidu-aip',
-        'pymongo'
+        'pymongo',
         # 'pymssql<3.0',
         'audioplayer',
         'edge_tts'
