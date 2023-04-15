@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_tool",  # Replace with your own username
-    version="1.2.9",
+    version="1.3",
     author="xyl",
     author_email="author@example.com",
     description="我的工具",
