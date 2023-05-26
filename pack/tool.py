@@ -58,7 +58,7 @@ voice_name = voice[2]['Name']
 
 def speak(text: str, file: str = "", is_OverWrite=False, spd=5):
     if file == "":
-        save_file = 'temp/%s.mp3' % md5(text)
+        save_file = 'temp\\%s.mp3' % md5(text)
     else:
         save_file = file
     if is_OverWrite or not os.path.exists(save_file):
