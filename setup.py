@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py_tool",  # Replace with your own username
-    version="1.3.1",
+    version="1.3.2",
     author="xyl",
     author_email="author@example.com",
     description="我的工具",
@@ -30,6 +30,7 @@ setuptools.setup(
         'pymongo',
         # 'pymssql<3.0',
         'audioplayer',
-        'edge_tts'
+        'edge_tts',
+        'nest_asyncio'
     ]
 )

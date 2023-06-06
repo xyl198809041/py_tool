@@ -9,6 +9,9 @@ import edge_tts
 import asyncio
 from edge_tts import VoicesManager
 from audioplayer import AudioPlayer
+import nest_asyncio
+
+nest_asyncio.apply()
 
 client = AipSpeech('15214676', 'ec38ooAnseLccgP1U89iI88l', '04h8Dhm4DdMuztfkWAlWwBzf5dtF8Mc8')
 
