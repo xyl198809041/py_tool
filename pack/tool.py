@@ -69,7 +69,7 @@ def speak(text: str, file: str = "", is_OverWrite=False, spd=5):
     if is_OverWrite or not os.path.exists(save_file):
         if not os.path.exists('temp'):
             os.mkdir('temp')
-        communicate = edge_tts.Communicate(text, voice_name, rate=f'{(spd - 5) * 10:+}%')
+        communicate = edge_tts.Communicate(text, voice_name, rate=f'{(spd - 5) * 10:+}%',volume='+1000%')
         asyncio.run(communicate.save(save_file))
     if file == "":
         player = AudioPlayer(save_file)
