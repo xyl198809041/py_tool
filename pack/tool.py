@@ -53,13 +53,15 @@ def md5(data):
 #             pygame.time.wait(1)
 
 
-
-voices = asyncio.run(VoicesManager.create())
-voice = voices.find(Gender="Male", Language="zh")
-voice_name = voice[2]['Name']
+voice_name = ''
 
 
 def speak(text: str, file: str = "", is_OverWrite=False, spd=5):
+    global voice_name
+    if voice_name == '':
+        voices = asyncio.run(VoicesManager.create())
+        voice = voices.find(Gender="Male", Language="zh")
+        voice_name = voice[2]['Name']
     if file == "":
         save_file = 'temp\\%s.mp3' % md5(text)
     else:
@@ -67,7 +69,7 @@ def speak(text: str, file: str = "", is_OverWrite=False, spd=5):
     if is_OverWrite or not os.path.exists(save_file):
         if not os.path.exists('temp'):
             os.mkdir('temp')
-        communicate = edge_tts.Communicate(text, voice_name, rate=f'{(spd-5)*10:+}%')
+        communicate = edge_tts.Communicate(text, voice_name, rate=f'{(spd - 5) * 10:+}%')
         asyncio.run(communicate.save(save_file))
     if file == "":
         player = AudioPlayer(save_file)
