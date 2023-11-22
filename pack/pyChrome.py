@@ -28,6 +28,13 @@ class WebBrowser:
             "profile.content_settings.plugin_whitelist.adobe-flash-player": 1,
             "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
         }
+        chromeOpitons.add_experimental_option('excludeSwitches', ['enable-automation'])
+        chromeOpitons.add_experimental_option("detach", True)
+
+        # 去掉window.navigator.webdriver的特性
+        chromeOpitons.add_argument("disable-blink-features=AutomationControlled")
+
+        # option.add_argument('user-agent=ywy')
         chromeOpitons.add_experimental_option('prefs', prefs)
         if proxy != "":
             chromeOpitons.add_argument('--proxy-server=%s' % proxy)
